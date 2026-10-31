@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nadprzestrzeń Filmowa - Archiwum Kinowej Przyszłości</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
     <!-- NAGŁÓWEK I NAWIGACJA -->
     <header>
         <div class="logo">
-            <h1>NADPRZESTRZEŃ_FILMOWA</h1>
+            <h1>NADPRZESTRZEŃ FILMOWA</h1>
         </div>
         <nav>
             <button class="menu-toggle" aria-label="Otwórz menu">☰</button>
@@ -33,10 +33,15 @@
         <section class="hero">
             <div class="hero-content">
                 <h2>Eksploruj Przyszłość Już Teraz</h2>
-                <p>Witaj w bazie danych filmów Science-Fiction. Odkryj futurystyczne wizje, ikoniczne postacie i najnowsze produkcje.</p>
-                <div class="hero-quote" id="hero-quote">
-                    <blockquote>„Widziałem rzeczy, którym wy, ludzie, nie uwierzylibyście...”</blockquote>
-                    <cite>— Blade Runner (1982)</cite>
+                <p>Witaj w bazie filmów Science-Fiction. Odkryj futurystyczne wizje, ikoniczne postacie i najnowsze produkcje.</p>
+                <div class="hero-quote-container" id="hero-quote">
+                    <div class="hero-quote-text">
+                        <blockquote>„Widziałem rzeczy, którym wy, ludzie, nie               uwierzylibyście...”</blockquote>
+                        <cite>— Blade Runner (1982)</cite>
+                    </div>
+                    <div class="hero-quote-img-wrap">
+                        <img src="../zdjecia/blade_runner_quote.jpg" alt="Blade Runner w deszczu">
+                    </div>
                 </div>
                 <div class="hero-buttons">
                     <a href="#katalog" class="btn">Rozpocznij Eksplorację</a>
@@ -52,11 +57,11 @@
             <div class="filter-container">
                 <input type="text" id="search-input" placeholder="Szukaj filmu po tytule...">
                 <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Wszystkie</button>
-                    <button class="filter-btn" data-filter="cyberpunk">Cyberpunk</button>
-                    <button class="filter-btn" data-filter="space-opera">Space Opera</button>
-                    <button class="filter-btn" data-filter="hard-scifi">Hard Sci-Fi</button>
-                    <button class="filter-btn" data-filter="first-contact">First Contact</button>
+                    <button class="filter-btn active" data-filter="all"><span>Wszystkie</span></button>
+                    <button class="filter-btn" data-filter="cyberpunk"><span>Cyberpunk</span></button>
+                    <button class="filter-btn" data-filter="space-opera"><span>Space Opera</span></button>
+                    <button class="filter-btn" data-filter="hard-scifi"><span>Hard Sci-Fi</span></button>
+                    <button class="filter-btn" data-filter="first-contact"><span>First Contact</span></button>
                 </div>
             </div>
             <div class="movies-grid" id="catalog-grid"></div>
