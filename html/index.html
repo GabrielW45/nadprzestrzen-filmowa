@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadprzestrzeń Filmowa - Archiwum Kinowej Przyszłości</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAGŁÓWEK I NAWIGACJA -->
+    <header>
+        <div class="logo">
+            <h1>NADPRZESTRZEŃ_FILMOWA</h1>
+        </div>
+        <nav>
+            <button class="menu-toggle" aria-label="Otwórz menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#katalog">Katalog</a></li>
+                <li><a href="#postacie">Postacie</a></li>
+                <li><a href="#premiery">Premiery</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" aria-label="Zmień motyw">🌘</button>
+    </header>
+
+    <!-- GŁÓWNA ZAWARTOŚĆ STRONY -->
+    <main>
+
+        <!-- SEKCJA HERO (POWITALNA) -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Eksploruj Przyszłość Już Teraz</h2>
+                <p>Witaj w bazie danych filmów Science-Fiction. Odkryj futurystyczne wizje, ikoniczne postacie i najnowsze produkcje.</p>
+                <div class="hero-quote" id="hero-quote">
+                    <blockquote>„Widziałem rzeczy, którym wy, ludzie, nie uwierzylibyście...”</blockquote>
+                    <cite>— Blade Runner (1982)</cite>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#katalog" class="btn">Rozpocznij Eksplorację</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCJA KATALOGU I WYSZUKIWARKI -->
+        <section id="katalog" class="catalog-section">
+            <h2>Katalog Filmów SF</h2>
+            
+            <!-- Narzędzia filtrujące (obsługiwane przez JS) -->
+            <div class="filter-container">
+                <input type="text" id="search-input" placeholder="Szukaj filmu po tytule...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Wszystkie</button>
+                    <button class="filter-btn" data-filter="cyberpunk">Cyberpunk</button>
+                    <button class="filter-btn" data-filter="space-opera">Space Opera</button>
+                    <button class="filter-btn" data-filter="hard-scifi">Hard Sci-Fi</button>
+                    <button class="filter-btn" data-filter="first-contact">First Contact</button>
+                </div>
+            </div>
+            <div class="movies-grid" id="catalog-grid"></div>
+        </section>
+
+        <!-- SEKCJA KULTOWE POSTACIE SF -->
+        <section id="postacie" class="characters-section">
+            <h2>Kultowe Postacie SF</h2>
+            <p>Bohaterowie i ikony, którzy zdefiniowali kino science-fiction</p>
+            <div class="movies-grid" id="characters-grid"></div>
+        </section>
+
+        <!-- SEKCJA NADCHODZĄCE PREMIERY -->
+        <section id="premiery" class="premieres-section">
+            <h2>Nadchodzące Premiery SF</h2>
+            <p>Najbardziej wyczekiwane kinowe wizje przyszłości</p>
+            <div class="movies-grid" id="premieres-grid"></div>
+        </section>
+
+        <!-- SEKCJA FAQ -->
+        <section id="faq" class="faq-section">
+            <h2>Często Zadawane Pytania (FAQ)</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">Czym różni się Hard Sci-Fi od Space Opery?</button>
+                <div class="faq-answer">
+                    <p>Hard Sci-Fi skupia się na ścisłym trzymaniu się praw fizyki i nauki, podczas gdy Space Opera stawia na rozmach, przygodę i kosmiczne konflikty bez głębokiej analizy naukowej.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Skąd pochodzą oceny filmów prezentowane w bazie?</button>
+                <div class="faq-answer">
+                    <p>Wszystkie oceny oraz opisy filmów są wiernie odwzorowane na podstawie danych z najpopularniejszego polskiego serwisu filmowego – Filmweb.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Czy w przyszłości pojawią się recenzje seriali Sci-Fi?</button>
+                <div class="faq-answer">
+                    <p>Tak! Planujemy rozbudowę archiwum o kultowe seriale cyberpunkowe i kosmiczne (takie jak <i>The Expanse</i> czy <i>Cyberpunk: Edgerunners</i>).</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Jak zgłosić film do bazy Nadprzestrzeni?</button>
+                <div class="faq-answer">
+                    <p>Możesz dodać własną propozycję klasyki gatunku bezpośrednio do naszego systemu archiwum, korzystając z poniższego przycisku:</p>
+                    <!-- Przycisk wyzwalający modal w JS -->
+                    <button id="openModalBtn" class="btn btn-small">Otwórz formularz zgłoszeniowy</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL DO ZGLASZANIA FILMÓW -->
+        <div id="movieModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" id="closeModalBtn">&times;</span>
+                <h3>Zgłoś nowy film do bazy</h3>
+                <p>Wpisz tytuł oraz podgatunek filmu Sci-Fi, który chcesz dodać do Nadprzestrzeni:</p>
+                
+                <form id="movieSubmissionForm">
+                    <div class="form-group">
+                        <label for="modal-title">Tytuł filmu:</label>
+                        <input type="text" id="modal-title" placeholder="np. Matrix" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-genre">Podgatunek:</label>
+                        <select id="modal-genre">
+                            <option value="cyberpunk">Cyberpunk</option>
+                            <option value="space-opera">Space Opera</option>
+                            <option value="hard-scifi">Hard Sci-Fi</option>
+                            <option value="first-contact">First Contact</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Wyślij zgłoszenie</button>
+                </form>
+                <p id="modal-message"></p>
+            </div>
+        </div>
+
+        <!-- SEKCJA NEWSLETTER -->
+        <section id="kontakt" class="contact-section">
+            <h2>Dołącz do Nadprzestrzeni</h2>
+            <form id="newsletter-form">
+                <input type="email" id="email-input" placeholder="Wpisz swój adres e-mail..." required>
+                <button type="submit" class="btn">Subskrybuj</button>
+            </form>
+            <p id="form-message"></p>
+        </section>
+
+    </main>
+
+    <!-- STOPKA -->
+    <footer>
+        <p>&copy; 2026 Nadprzestrzeń Filmowa. Wszelkie prawa zastrzeżone.</p>
+        <button id="scrollToTopBtn" aria-label="Powrót na górę strony">↑ Powrót na górę</button>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
