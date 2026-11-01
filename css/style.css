@@ -254,8 +254,74 @@ h2 {
 /*SIATKA KAFELKÓW*/
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 2rem;
+}
+
+.movie-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--border-color);
+}
+
+/*Kontener na plakat*/
+.movie-poster-wrap {
+    width: 140px;
+    flex-shrink: 0;
+    background-color: #000;
+}
+
+.movie-poster-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/*Kontener na informacje*/
+.movie-info {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.movie-info h3 {
+    font-size: 1.05rem;
+    margin: 0.3rem 0;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+.movie-info .tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+    .movie-card {
+        flex-direction: column;
+    }
+    .movie-poster-wrap {
+        width: 100%;
+        height: 260px;
+    }
 }
 
 /*FAQ*/
