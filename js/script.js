@@ -1,11 +1,11 @@
-import { katalogFilmow, postacieSF, nadchodzacePremiery } from './dane.js';
+import { katalogFilmow as domyslnyKatalog, postacieSF, nadchodzacePremiery } from './dane.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const catalogGrid = document.getElementById('catalog-grid');
     const charactersGrid = document.getElementById('characters-grid');
     const premieresGrid = document.getElementById('premiere-grid') || document.getElementById('premieres-grid');
 
-    let katalogFilmow = JSON.parse(localStorage.getItem('katalogFilmow')) || [...initialKatalog];
+    let katalogFilmow = JSON.parse(localStorage.getItem('katalogFilmow')) || [...domyslnyKatalog];
     
     //WYSWIETLANIE KART FILMÓW
     function renderMovies(items, container) {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'movie-card';
             card.innerHTML = `
                 <div class="movie-poster-wrap">
-                    <img src="${item.zdjecie || '../zdjecia/placeholder.jpg'}" alt="${item.tytul || item.imie}">
+                    <img src="${item.zdjecie || 'zdjecia/placeholder.jpg'}" alt="${item.tytul || item.imie}">
                 </div>
                 <div class="movie-info">
                     <span class="tag">${item.kategoria || item.zrodlo || item.data}</span>
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     rok: newYear,
                     ocena: "Nowość (Zgłoszone)",
                     opis: "Film dodany przez użytkownika poprzez formularz w archiwum.",
-                    zdjecie: "../zdjecia/default.jpg"
+                    zdjecie: "zdjecia/default.jpg"
                 };
 
                 katalogFilmow.push(newMovie);
