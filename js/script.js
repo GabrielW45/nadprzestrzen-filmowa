@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const charactersGrid = document.getElementById('characters-grid');
     const premieresGrid = document.getElementById('premiere-grid') || document.getElementById('premieres-grid');
 
+    let katalogFilmow = JSON.parse(localStorage.getItem('katalogFilmow')) || [...initialKatalog];
+    
     //WYSWIETLANIE KART FILMÓW
     function renderMovies(items, container) {
         if (!container) return;
@@ -98,22 +100,34 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const titleInput = document.getElementById('modal-title');
             const genreSelect = document.getElementById('modal-genre');
-            const yearInput = document.getElementById('modal-year'); // Pobieramy rok
+            const yearInput = document.getElementById('modal-year');
             
-            if (titleInput && genreSelect) {
-                const newTitle = titleInput.value;
+            if (titleInput && genreSelect && yearInput) {
+                const newTitle = titleInput.value.trim();
                 const newGenre = genreSelect.value;
-                const newYear = yearInput ? yearInput.value : "2026"; // Rok z formularza
+                const newYear = yearInput.value.trim();
                 
-                katalogFilmow.push({
+                const yearRegex = /^\d{4}$/;
+                if (!yearRegex.test(newYear)) {
+                    if (modalMessage) {
+                        modalMessage.textContent = "Błąd: Rok produkcji musi składać się z 4 cyfr (np. 2026)!";
+                        modalMessage.style.color = "#ef4444";
+                    }
+                    return;
+                }
+
+                const newMovie = {
                     id: katalogFilmow.length + 1,
                     tytul: newTitle,
                     kategoria: newGenre,
-                    rok: newYear, // Przypisujemy rok
-                    ocena: "⭐ Nowość (Zgłoszone)",
+                    rok: newYear,
+                    ocena: "Nowość (Zgłoszone)",
                     opis: "Film dodany przez użytkownika poprzez formularz w archiwum.",
-                    zdjecie: "https://picsum.photos/400/600?blur=2" // Ładny plakat zastępczy
-                });
+                    zdjecie: "../zdjecia/default.jpg"
+                };
+
+                katalogFilmow.push(newMovie);
+                localStorage.setItem('katalogFilmow', JSON.stringify(katalogFilmow));
 
                 filterAndSearchData();
                 submissionForm.reset();
@@ -125,6 +139,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     modal.classList.remove('show');
                     if (modalMessage) modalMessage.textContent = "";
                 }, 1500);
+            }
+        });
+    }
+
+    // OBSŁUGA NEWSLETTERA
+    const newsletterForm = document.getElementById('newsletter-form');
+    const formMessage = document.getElementById('form-message');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email-input');
+            if (emailInput && emailInput.value) {
+                if (formMessage) {
+                    formMessage.textContent = "Sukces! Twój adres e-mail został zapisany do bazy Nadprzestrzeni.";
+                    formMessage.style.color = "var(--accent-color)";
+                }
+                newsletterForm.reset();
+                setTimeout(() => {
+                    if (formMessage) formMessage.textContent = "";
+                }, 4000);
             }
         });
     }

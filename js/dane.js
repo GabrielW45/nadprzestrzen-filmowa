@@ -1,4 +1,4 @@
-// Baza danych dla Nadprzestrzeni Filmowej (rozbudowana wersja)
+// Baza danych dla Nadprzestrzeni Filmowej
 
 export const katalogFilmow = [
     {
@@ -115,7 +115,7 @@ export const postacieSF = [
     {
         id: 1,
         imie: "Ellen Ripley",
-        zrodlo: "Seria Obcy",
+        zrodlo: "Obcy",
         opis: "Twarda oficer, symbol walki z ksenomorfami.",
         zdjecie: "../zdjecia/postac-ripley.jpg"
     },
